@@ -26,7 +26,6 @@ def server(indirizzo, serial, backlog=1):
         print("Connessione Server - Client Stabilita: " + str(indirizzo_client))
         comandi(conn, serial)
 
-
 if __name__ == "__main__":      #eseguiamo soltanto se questa è la classe main
     port = "/dev/tty"  # la porta
     p = input("Inserire l'ultima parte della porta di arduino (escluso tty) -> ")    #prendiamo la seriale di arduino
