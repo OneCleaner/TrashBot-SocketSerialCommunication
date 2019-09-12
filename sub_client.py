@@ -5,12 +5,12 @@ import sys
 
 
 def invia_comandi(skt):
-    print('inserire "destra" per svoltare a destra')
-    print('inserire "sinistra" per svoltare a sinistra')
-    print('inserire "spegni" per spegnere')
-    print('inserire "accendi" per accendere')
-    print('inserire un numero tra 190 e 255 per cambiare la velocità')
-    print('inserire "ESC" per uscire\n\n')
+    print('- Inserire "destra" per svoltare a destra')
+    print('- Inserire "sinistra" per svoltare a sinistra')
+    print('- Inserire "spegni" per spegnere')
+    print('- Inserire "accendi" per accendere')
+    print('- Inserire un numero tra 190 e 255 per cambiare la velocità')
+    print('- Inserire "ESC" per uscire\n\n')
     while True:
         comando = input("-> ")
         if comando == "ESC":
