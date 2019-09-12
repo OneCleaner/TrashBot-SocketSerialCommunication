@@ -35,7 +35,7 @@ def connessione_server(indirizzo_server):
     else:
         invia_comandi(skt)
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     IP_RASPBERRY = input("Inserisci l'indirizzo del Raspberry -> ")
     PORTA_RASPBERRY = input("Inserisci la porta che hai inserito nel Raspberry ->")
     connessione_server((IP_RASPBERRY, int(PORTA_RASPBERRY)))
