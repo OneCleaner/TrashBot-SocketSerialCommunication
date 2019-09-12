@@ -4,29 +4,36 @@ import socket
 import sys
 
 
-def invia_comandi(s):
+def invia_comandi(skt):
+    print('inserire "destra" per svoltare a destra')
+    print('inserire "sinistra" per svoltare a sinistra')
+    print('inserire "spegni" per spegnere')
+    print('inserire "accendi" per accendere')
+    print('inserire un numero tra 190 e 255 per cambiare la velocità')
+    print('inserire "ESC" per uscire\n\n')
     while True:
         comando = input("-> ")
         if comando == "ESC":
             print("Sto chiudendo la connessione con il Raspberry")
-            s.close()
+            skt.close()
             sys.exit()
         else:
-            s.send(comando.encode())
-            data = s.recv(4096)
+            skt.send(comando.encode())
+            data = skt.recv(4096)
             print(str(data, "utf-8"))
 
 
 
 def connessione_server(indirizzo_server):
     try:
-        s = socket.socket()
-        s.connect(indirizzo_server)
+        skt = socket.socket()
+        skt.connect(indirizzo_server)
         print("Connessione al Raspberry Riuscita !")
     except socket.error as errore:
-        print(f"Connessione Fallita: \n{errore}")
+        print("Connessione Fallita: \n" + str(errore))
         sys.exit()
-    invia_comandi(s)
+    else:
+        invia_comandi(skt)
 
 if __name__ == "__main__"
     IP_RASPBERRY = input("Inserisci l'indirizzo del Raspberry -> ")
