@@ -29,13 +29,13 @@ def connessione_server(indirizzo_server):
     try:
         skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         skt.connect(indirizzo_server)
-        print("Connessione al Raspberry Riuscita!")
     except socket.error as errore:
         print("Connessione Fallita: \n" + str(errore))
         skt.shutdown(socket.SHUT_RDWR)
         skt.close()
         sys.exit()
     else:
+        print("Connessione al Raspberry Riuscita!")
         invia_comandi(skt)
 
 if __name__ == "__main__":
