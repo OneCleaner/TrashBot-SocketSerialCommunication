@@ -9,7 +9,7 @@ def invia_comandi(skt):
     print('- Inserire "sinistra" per svoltare a sinistra')
     print('- Inserire "spegni" per spegnere')
     print('- Inserire "accendi" per accendere')
-    print('- Inserire un numero tra 190 e 255 per cambiare la velocità')
+    print('- Inserire un numero tra 90 e 255 per cambiare la velocità')
     print('- Inserire "ESC" per uscire\n\n')
     while True:
         comando = input("-> ")
@@ -23,7 +23,6 @@ def invia_comandi(skt):
             skt.send(comando.encode())
             data = skt.recv(4096)
             print(str(data, "utf-8"))
-
 
 
 def connessione_server(indirizzo_server):
