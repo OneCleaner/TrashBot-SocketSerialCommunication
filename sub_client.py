@@ -15,6 +15,8 @@ def invia_comandi(skt):
         comando = input("-> ")
         if comando == "ESC":
             print("Sto chiudendo la connessione con il Raspberry")
+            skt.send(comando.encode())
+            skt.shutdown(socket.SHUT_RDWR) #solo client
             skt.close()
             sys.exit()
         else:
@@ -28,14 +30,16 @@ def connessione_server(indirizzo_server):
     try:
         skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         skt.connect(indirizzo_server)
-        print("Connessione al Raspberry Riuscita !")
+        print("Connessione al Raspberry Riuscita!")
     except socket.error as errore:
         print("Connessione Fallita: \n" + str(errore))
+        skt.shutdown(socket.SHUT_RDWR)
+        skt.close()
         sys.exit()
     else:
         invia_comandi(skt)
 
 if __name__ == "__main__":
-    IP_RASPBERRY = input("Inserisci l'indirizzo del Raspberry -> ")
-    PORTA_RASPBERRY = input("Inserisci la porta che hai inserito nel Raspberry -> ")
+    IP_RASPBERRY = input("Inserisci l'indirizzo del Raspberry \n-> ")
+    PORTA_RASPBERRY = input("Inserisci la porta che hai inserito nel Raspberry \n-> ")
     connessione_server((IP_RASPBERRY, int(PORTA_RASPBERRY)))
