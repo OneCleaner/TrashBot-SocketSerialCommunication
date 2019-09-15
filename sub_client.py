@@ -45,6 +45,7 @@ vel2 = 0
 def vel():
     global comando, vel2
     comando = str(vel2)
+    print(comando)
 
 
 def invia_comandi(skt):
@@ -69,10 +70,11 @@ def invia_comandi(skt):
     Button(root, text="Accendi", command=accendi).place(x=220, y=40)
     Button(root, text=" Spegni ", command=spegni).place(x=220, y=70)
     Button(root, text="    Esc    ", command=esc).place(x=220, y=100)
-    vel1 = Scale(root, from_=90, to=255, orient=HORIZONTAL).place(x=50, y=150)
+    vel1 = Scale(root, from_=90, to=255, orient=HORIZONTAL)
+    vel1.place(x=50, y=150)
     vel2 = vel1.get()
     Button(root, text="Invia Vel", command=vel).place(x=170, y=165)
-
+    print(comando)
     if comando == "ESC":
         print("Sto chiudendo la connessione con il Raspberry")
         skt.send(comando.encode())
@@ -83,7 +85,8 @@ def invia_comandi(skt):
         skt.send(comando.encode())
         data = skt.recv(4096)
         print(str(data, "utf-8"))
-    comando = ""
+        comando = ""
+
 
     root.mainloop()
 
