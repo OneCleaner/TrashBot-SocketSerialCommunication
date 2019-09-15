@@ -33,9 +33,11 @@ def server(indirizzo, serial, backlog=1):
                 server(indirizzo, serial, backlog=1)
 
             serial.write(str.encode(richiesta.decode()))   #manda sulla seriale di arduino i comandi ricevuti dal client, si potrebbe fare senza codificare e decodificare ma noi siamo matti
+            #serial.write(richiesta)
             toRead = serial.readline()
             if toRead:
                 conn.sendall(("Comando ricevuto con successo! \n" + toRead.decode()).encode())
+                #conn.sendall(("Comando ricevuto con successo! \n").encode() + toRead)
 
 if __name__ == "__main__":      #eseguiamo soltanto se questa è la classe main
 
