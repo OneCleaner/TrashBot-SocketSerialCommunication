@@ -47,9 +47,10 @@ def esc():
 
 # vel2 = 0
 
-# def vel():
-
-
+def vel():
+    skt.send(str(vel1.get()).encode())
+    data = skt.recv(4096)
+    print(str(data, "utf-8"))
 
 
 if __name__ == "__main__":
@@ -88,10 +89,9 @@ if __name__ == "__main__":
         Button(root, text="Accendi", command=accendi).place(x=220, y=40)
         Button(root, text=" Spegni ", command=spegni).place(x=220, y=70)
         Button(root, text="    Esc    ", command=esc).place(x=220, y=100)
-        vel1 = Scale(root, from_=90, to=255, orient=HORIZONTAL)
+        vel1 = Entry(root, width=20)
         vel1.place(x=50, y=150)
-        vel2 = vel1.get()
-        Button(root, text="Invia Vel").place(x=170, y=165)
+        Button(root, text="Invia Vel", command=vel).place(x=170, y=165)
 
         root.mainloop()
 
